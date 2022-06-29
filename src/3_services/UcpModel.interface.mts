@@ -14,6 +14,7 @@ export default interface UcpModel extends EventServiceConsumer, Thing<UcpModel> 
     loadOnAccess: boolean;
     toUDEStructure(particleSnapshot?: any): ParticleUDEStructure;
     version: string;
+    get toJSON(): string;
 }
 
 

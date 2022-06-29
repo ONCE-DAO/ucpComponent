@@ -11,10 +11,10 @@
   },
   "include": [
     "./src",
-    "../../../../../Scenarios/localhost/webroot"
+    "../../../../../Scenarios/localhost/webroot",
+    "./test"
   ],
   "exclude": [
-    "**/test/**/*",
     "dist",
     "node_modules",
     "../../../../../Scenarios/localhost/webroot/tla/EAM/UcpComponent/main"
