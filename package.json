@@ -1,0 +1,28 @@
+{
+  "name": "UcpComponent",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.mjs",
+  "namespace": "tla.EAM",
+  "onceDependencies": [
+    "Once"
+  ],
+  "scripts": {
+    "init": "npx ts-node-esm initComponent.mts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ONCE-DAO/ucpComponent.git"
+  },
+  "author": "Benedikt Eckstein",
+  "license": "AGPL-3.0",
+  "bugs": {
+    "url": "https://github.com:ONCE-DAO/ucpComponent/issues"
+  },
+  "homepage": "https://github.com:ONCE-DAO/ucpComponent#readme",
+  "devDependencies": {
+    "ts-node": "^10.4.0",
+    "ts-patch": "^2.0.1",
+    "typescript": "^4.7.2"
+  }
+}
