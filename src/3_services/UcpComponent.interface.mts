@@ -1,8 +1,6 @@
-import Class from "./Class.interface.mjs";
-import IOR from "./IOR.interface.mjs";
+import { Thing, IOR, Class } from "ior:esm:/tla.EAM.Once[dev]";
+import { RelatedObjectStore } from "ior:esm:/tla.EAM.Store[main]";
 import { PersistanceManagerHandler } from "./PersistanceManagerHandler.interface.mjs";
-import RelatedObjectStore from "./RelatedObjectStore.interface.mjs";
-import Thing from "./Thing.interface.mjs";
 import UcpModel from "./UcpModel.interface.mjs";
 
 export default interface UcpComponent<ModelDataType, ClassInterface> extends Thing<ClassInterface> {
