@@ -86,6 +86,11 @@ export default class UDELoader extends BaseLoader {
         }
     }
 
+    static async load(aliasOrId: string): Promise<any> {
+        //TODO Add correct hostname
+        return await new DefaultIOR().init('ior:ude:/localhost/UDE/' + aliasOrId).load();
+    }
+
     static validateUDEStructure(udeObject: any): UDEObject {
         if (typeof udeObject !== 'object' || udeObject == null) throw new Error(`Is not a udeObject`);
         if (typeof udeObject.id !== 'string') throw new Error(`Parameter 'id' is wrong in Object value: '${udeObject.id}`)
