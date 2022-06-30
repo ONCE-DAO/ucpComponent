@@ -142,210 +142,208 @@ describe("File PersistanceManager", () => {
 
     })
 
-    // test("retrieve result with Alias", async () => {
-    //     let ucpComponent = new SomeExampleUcpComponent();
+    test("retrieve result with Alias", async () => {
+        let ucpComponent = new SomeExampleUcpComponent();
 
 
-    //     const myAlias = getAlias();
-    //     await ucpComponent.persistanceManager.addAlias(myAlias);
+        const myAlias = getAlias();
+        await ucpComponent.persistanceManager.addAlias(myAlias);
 
-    //     await ucpComponent.persistanceManager.create();
+        await ucpComponent.persistanceManager.create();
 
-    //     // @ts-ignore
-    //     let filename = await ucpComponent.persistanceManager.list[0].fileName();
-    //     allFiles.push(filename);
+        let filename = (ucpComponent.persistanceManager.list[0] as FilePersistanceManager).filePath();
 
-    //     let result = await ucpComponent.persistanceManager.retrieve();
+        allFiles.push(filename);
 
-    //     expect(result[0]?.alias?.length).toBe(1);
+        let result = await ucpComponent.persistanceManager.retrieve();
 
-    //     expect(result[0]?.alias?.[0]).toBe(myAlias);
+        expect(result[0]?.alias?.length).toBe(1);
 
-    // });
+        expect(result[0]?.alias?.[0]).toBe(myAlias);
 
+    });
 
-    // test("update on Model change", async () => {
-    //     let ucpComponent = new SomeExampleUcpComponent();
 
+    test("update on Model change", async () => {
+        let ucpComponent = new SomeExampleUcpComponent();
 
-    //     await ucpComponent.persistanceManager.create();
 
-    //     // @ts-ignore
-    //     let filename = await ucpComponent.persistanceManager.list[0].fileName();
-    //     allFiles.push(filename);
+        await ucpComponent.persistanceManager.create();
 
-    //     ucpComponent.model.age = 10;
+        let filename = (ucpComponent.persistanceManager.list[0] as FilePersistanceManager).filePath();
 
-    //     UDELoader.factory().clearStore();
+        allFiles.push(filename);
 
-    //     let ior = new DefaultIOR().init(ucpComponent.IOR.href);
-    //     let ucpComponentClone = await ior.load();
+        ucpComponent.model.age = 10;
 
-    //     expect(ucpComponentClone.model.age).toEqual(ucpComponent.model.age);
+        UDELoader.factory().clearStore();
 
-    //     await ucpComponent.persistanceManager.delete();
-    //     // @ts-ignore
-    //     expect(fs.existsSync(filename), 'File was not deleted').toBeFalsy();
+        let ior = new DefaultIOR().init(ucpComponent.IOR.href);
+        let ucpComponentClone = await ior.load();
 
+        expect(ucpComponentClone.model.age).toEqual(ucpComponent.model.age);
 
-    // })
+        await ucpComponent.persistanceManager.delete();
+        // @ts-ignore
+        expect(fs.existsSync(filename), 'File was not deleted').toBeFalsy();
 
 
-    // test("File starts with Alias and ends with id", async () => {
-    //     let ucpComponent = new SomeExampleUcpComponent();
+    })
 
-    //     const id = ucpComponent.IOR.id;
 
-    //     const myAlias = getAlias();
-    //     await ucpComponent.persistanceManager.addAlias(myAlias);
+    test("File starts with Alias and ends with id", async () => {
+        let ucpComponent = new SomeExampleUcpComponent();
 
-    //     // @ts-ignore
-    //     let filename: string = await ucpComponent.persistanceManager.list[0].fileName();
+        const id = ucpComponent.IOR.id;
 
-    //     let fileList = filename.split('/');
-    //     let file = fileList[fileList.length - 1];
+        const myAlias = getAlias();
+        await ucpComponent.persistanceManager.addAlias(myAlias);
 
-    //     expect(file).toBe(myAlias + '.' + id + '.json');
+        let filename = (ucpComponent.persistanceManager.list[0] as FilePersistanceManager).filePath();
 
-    // });
+        let fileList = filename.split('/');
+        let file = fileList[fileList.length - 1];
 
-    // test("add Alias before create", async () => {
-    //     let ucpComponent = new SomeExampleUcpComponent();
+        expect(file).toBe(myAlias + '.' + id + FilePersistanceManager.fileEnding);
+    });
 
+    test("add Alias before create", async () => {
+        let ucpComponent = new SomeExampleUcpComponent();
 
-    //     const myAlias = getAlias();
-    //     await ucpComponent.persistanceManager.addAlias(myAlias);
 
-    //     await ucpComponent.persistanceManager.create();
+        const myAlias = getAlias();
+        await ucpComponent.persistanceManager.addAlias(myAlias);
 
-    //     // @ts-ignore
-    //     let filename = await ucpComponent.persistanceManager.list[0].fileName();
-    //     allFiles.push(filename);
+        await ucpComponent.persistanceManager.create();
 
-    //     expect(filename.match(myAlias)).toBeTruthy();
+        let filename = (ucpComponent.persistanceManager.list[0] as FilePersistanceManager).filePath();
 
-    //     await ucpComponent.persistanceManager.delete();
-    //     // @ts-ignore
-    //     expect(fs.existsSync(filename), 'File was not deleted').toBeFalsy();
+        allFiles.push(filename);
 
-    // });
+        expect(filename.match(myAlias)).toBeTruthy();
 
+        await ucpComponent.persistanceManager.delete();
+        // @ts-ignore
+        expect(fs.existsSync(filename), 'File was not deleted').toBeFalsy();
 
+    });
 
-    // test("add Alias after create", async () => {
-    //     let ucpComponent = new SomeExampleUcpComponent();
 
 
-    //     const myAlias = getAlias();
-    //     await ucpComponent.persistanceManager.create();
+    test("add Alias after create", async () => {
+        let ucpComponent = new SomeExampleUcpComponent();
 
-    //     await ucpComponent.persistanceManager.addAlias(myAlias);
 
+        const myAlias = getAlias();
+        await ucpComponent.persistanceManager.create();
 
-    //     // @ts-ignore
-    //     let filename = await ucpComponent.persistanceManager.list[0].fileName();
+        await ucpComponent.persistanceManager.addAlias(myAlias);
 
-    //     allFiles.push(filename);
 
-    //     expect(filename.match(myAlias)).toBeTruthy();
+        let filename = (ucpComponent.persistanceManager.list[0] as FilePersistanceManager).filePath();
 
-    //     await ucpComponent.persistanceManager.delete();
-    //     // @ts-ignore
-    //     expect(fs.existsSync(filename), 'File was not deleted').toBeFalsy();
 
-    // });
+        allFiles.push(filename);
 
-    // test("load with Alias => load return IOR with UUID", async () => {
-    //     let ucpComponent = new SomeExampleUcpComponent();
+        expect(filename.match(myAlias)).toBeTruthy();
 
+        await ucpComponent.persistanceManager.delete();
+        // @ts-ignore
+        expect(fs.existsSync(filename), 'File was not deleted').toBeFalsy();
 
-    //     const myAlias = getAlias();
-    //     await ucpComponent.persistanceManager.addAlias(myAlias);
-    //     await ucpComponent.persistanceManager.create();
+    });
 
-    //     // @ts-ignore
-    //     let filename = await ucpComponent.persistanceManager.list[0].fileName();
-    //     allFiles.push(filename);
+    test("load with Alias => load return IOR with UUID", async () => {
+        let ucpComponent = new SomeExampleUcpComponent();
 
-    //     UDELoader.factory().clearStore();
 
-    //     const aliasIOR = ucpComponent.IOR.clone();
-    //     aliasIOR.id = myAlias;
+        const myAlias = getAlias();
+        await ucpComponent.persistanceManager.addAlias(myAlias);
+        await ucpComponent.persistanceManager.create();
 
-    //     let componentClone = await aliasIOR.load();
+        let filename = (ucpComponent.persistanceManager.list[0] as FilePersistanceManager).filePath();
 
-    //     expect(componentClone.IOR.id).toBe(ucpComponent.IOR.id);
+        allFiles.push(filename);
 
-    //     await ucpComponent.persistanceManager.delete();
-    //     // @ts-ignore
-    //     expect(fs.existsSync(filename), 'File was not deleted').toBeFalsy();
+        UDELoader.factory().clearStore();
 
-    // });
+        const aliasIOR = ucpComponent.IOR.clone();
+        aliasIOR.id = myAlias;
 
+        let componentClone = await aliasIOR.load();
 
-    // test("load with Alias => get IOR with UUID in Store", async () => {
-    //     let ucpComponent = new SomeExampleUcpComponent();
+        expect(componentClone.IOR.id).toBe(ucpComponent.IOR.id);
 
+        await ucpComponent.persistanceManager.delete();
+        // @ts-ignore
+        expect(fs.existsSync(filename), 'File was not deleted').toBeFalsy();
 
-    //     const myAlias = getAlias();
-    //     await ucpComponent.persistanceManager.addAlias(myAlias);
-    //     await ucpComponent.persistanceManager.create();
+    });
 
-    //     // @ts-ignore
-    //     let filename = await ucpComponent.persistanceManager.list[0].fileName();
-    //     allFiles.push(filename);
 
-    //     UDELoader.factory().clearStore();
+    test("load with Alias => get IOR with UUID in Store", async () => {
+        let ucpComponent = new SomeExampleUcpComponent();
 
-    //     const aliasIOR = ucpComponent.IOR.clone();
-    //     aliasIOR.id = myAlias;
 
-    //     let componentClone = await aliasIOR.load();
+        const myAlias = getAlias();
+        await ucpComponent.persistanceManager.addAlias(myAlias);
+        await ucpComponent.persistanceManager.create();
 
-    //     //@ts-ignore
-    //     let storedObject = await UDELoader.factory().instanceStore.lookup(ucpComponent.IOR.href)
+        let filename = (ucpComponent.persistanceManager.list[0] as FilePersistanceManager).filePath();
 
-    //     expect(storedObject).toBe(componentClone);
+        allFiles.push(filename);
 
-    //     await ucpComponent.persistanceManager.delete();
-    //     // @ts-ignore
-    //     expect(fs.existsSync(filename), 'File was not deleted').toBeFalsy();
+        UDELoader.factory().clearStore();
 
-    // });
+        const aliasIOR = ucpComponent.IOR.clone();
+        aliasIOR.id = myAlias;
 
-    // test("Remove Alias", async () => {
-    //     let ucpComponent = new SomeExampleUcpComponent();
+        let componentClone = await aliasIOR.load();
 
-    //     const id = ucpComponent.IOR.id;
+        //@ts-ignore
+        let storedObject = await UDELoader.factory().instanceStore.lookup(ucpComponent.IOR.href)
 
-    //     const myAlias = getAlias();
-    //     await ucpComponent.persistanceManager.addAlias(myAlias);
+        expect(storedObject).toBe(componentClone);
 
+        await ucpComponent.persistanceManager.delete();
+        // @ts-ignore
+        expect(fs.existsSync(filename), 'File was not deleted').toBeFalsy();
 
-    //     await ucpComponent.persistanceManager.removeAlias(myAlias);
+    });
 
-    //     // @ts-ignore
-    //     let filename: string = await ucpComponent.persistanceManager.list[0].fileName();
+    test("Remove Alias", async () => {
+        let ucpComponent = new SomeExampleUcpComponent();
 
+        const id = ucpComponent.IOR.id;
 
-    //     let fileList = filename.split('/');
-    //     let file = fileList[fileList.length - 1];
+        const myAlias = getAlias();
+        await ucpComponent.persistanceManager.addAlias(myAlias);
 
-    //     expect(file).toBe(id + '.json');
 
-    // });
+        await ucpComponent.persistanceManager.removeAlias(myAlias);
 
-    // test("Add alias with . => Error", async () => {
-    //     let ucpComponent = new SomeExampleUcpComponent();
+        let filename = (ucpComponent.persistanceManager.list[0] as FilePersistanceManager).filePath();
 
-    //     try {
-    //         await ucpComponent.persistanceManager.addAlias('some.test');
-    //         throw new Error("Missing Error");
-    //     } catch (err) {
-    //         //@ts-ignore
-    //         expect(err.message).toBe("No '.' are allowed in alias")
-    //     }
 
-    // });
+
+        let fileList = filename.split('/');
+        let file = fileList[fileList.length - 1];
+
+        expect(file).toBe(id + FilePersistanceManager.fileEnding);
+
+    });
+
+    test("Add alias with . => Error", async () => {
+        let ucpComponent = new SomeExampleUcpComponent();
+
+        try {
+            await ucpComponent.persistanceManager.addAlias('some.test');
+            throw new Error("Missing Error");
+        } catch (err) {
+            //@ts-ignore
+            expect(err.message).toBe("No '.' are allowed in alias")
+        }
+
+    });
 
 })
