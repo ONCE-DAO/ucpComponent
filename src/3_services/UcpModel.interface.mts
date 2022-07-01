@@ -1,5 +1,5 @@
-import { EventServiceConsumer } from "ior:esm:/tla.EAM.EventService[main]";
-import { Thing } from "ior:esm:/tla.EAM.Once[dev]";
+import { EventServiceConsumer } from "ior:esm:/tla.EAM.Once.EventService[build]";
+import { Thing } from "ior:esm:/tla.EAM.Once[dev-merge]";
 import { ParticleUDEStructure } from "./Particle.interface.mjs";
 import Wave from "./Wave.interface.mjs";
 

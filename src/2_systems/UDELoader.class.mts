@@ -1,5 +1,5 @@
-import { ClassDescriptor, IOR, ExtendedPromise, DefaultIOR, BaseLoader, urlProtocol, loadingConfig } from "ior:esm:/tla.EAM.Once[dev]";
-import { WeakRefPromiseStore } from "ior:esm:/tla.EAM.Store[main]";
+import { ClassDescriptor, IOR, ExtendedPromise, DefaultIOR, BaseLoader, urlProtocol, loadingConfig } from "ior:esm:/tla.EAM.Once[dev-merge]";
+import { WeakRefPromiseStore } from "ior:esm:/tla.EAM.Once.Store[build]";
 import { BasePersistanceManager } from "../1_infrastructure/BasePersistanceManager.class.mjs";
 import { UDEObject } from "../3_services/PersistanceManager.interface.mjs";
 import UcpComponent from "../3_services/UcpComponent.interface.mjs";

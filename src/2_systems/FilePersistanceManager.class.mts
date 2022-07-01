@@ -1,7 +1,7 @@
 
 import fs from "fs";
 
-import { IOR, OnceMode, ServerSideUcpComponentDescriptorInterface } from "ior:esm:/tla.EAM.Once[dev]";
+import { IOR, OnceMode, ServerSideUcpComponentDescriptorInterface } from "ior:esm:/tla.EAM.Once[dev-merge]";
 
 import path from "path";
 import { BasePersistanceManager } from "../1_infrastructure/BasePersistanceManager.class.mjs";
@@ -46,6 +46,8 @@ export class FilePersistanceManager extends BasePersistanceManager {
 
     get udeDirectory(): string {
         if (this.ucpComponent === undefined) throw new Error("Missing ucpComponent");
+        // TODO PB merge
+        // @ts-ignore
         let udeDir = path.join(ONCE.eamd.scenario.eamdPath, ONCE.eamd.scenario.webRoot, (this.ucpComponent.classDescriptor.ucpComponentDescriptor as ServerSideUcpComponentDescriptorInterface).scenarioDirectory);
         if (!fs.existsSync(udeDir)) fs.mkdirSync(udeDir);
         return udeDir;
@@ -79,7 +81,8 @@ export class FilePersistanceManager extends BasePersistanceManager {
     static async discover(): Promise<{ [index: string]: string }> {
         // if (ior.pathName === undefined) throw new Error("Missing PathName in ior");
         const fullAliasList: { [index: string]: string } = {};
-
+        // TODO PB merge
+        // @ts-ignore
         for (const file of glob.sync(ONCE.eamd.scenario.webRoot + '/**/*' + this.fileEnding)) {
             let fileName = file.split('/').pop();
             if (fileName) {

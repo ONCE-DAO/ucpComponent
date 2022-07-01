@@ -1,4 +1,4 @@
-import { DefaultIOR, UUiD, ExtendedPromise } from "ior:esm:/tla.EAM.Once[dev]";
+import { DefaultIOR, UUiD, ExtendedPromise } from "ior:esm:/tla.EAM.Once[dev-merge]";
 import { UcpModelProxyIORSchema } from "../src/2_systems/DefaultUcpModel.class.mjs";
 import SomeExampleUcpComponent from "../src/2_systems/SomeExampleUcpComponent.class.mjs";
 import { UcpModelTransactionStates, UcpModelEvents, UcpModelChangeLogMethods } from "../src/3_services/UcpModel.interface.mjs";

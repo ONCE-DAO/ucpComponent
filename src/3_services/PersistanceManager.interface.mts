@@ -1,5 +1,5 @@
 
-import { Class, InterfaceDescriptor, IOR } from "ior:esm:/tla.EAM.Once[dev]";
+import { Class, InterfaceDescriptor, IOR } from "ior:esm:/tla.EAM.Once[dev-merge]";
 
 import { ParticleUDEStructure } from "./Particle.interface.mjs";
 import UcpComponent from "./UcpComponent.interface.mjs";

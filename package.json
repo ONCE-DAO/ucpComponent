@@ -1,6 +1,6 @@
 {
   "name": "UcpComponent",
-  "version": "main",
+  "version": "build",
   "description": "",
   "main": "index.mjs",
   "namespace": "tla.EAM",

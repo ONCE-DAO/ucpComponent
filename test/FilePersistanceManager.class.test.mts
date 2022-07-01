@@ -1,4 +1,4 @@
-import { DefaultIOR, ServerSideUcpComponentDescriptorInterface } from "ior:esm:/tla.EAM.Once[dev]";
+import { DefaultIOR, ServerSideUcpComponentDescriptorInterface } from "ior:esm:/tla.EAM.Once[dev-merge]";
 import { BasePersistanceManager } from "../src/1_infrastructure/BasePersistanceManager.class.mjs";
 import { FilePersistanceManager } from "../src/2_systems/FilePersistanceManager.class.mjs";
 import SomeExampleUcpComponent from "../src/2_systems/SomeExampleUcpComponent.class.mjs";
@@ -75,6 +75,8 @@ describe("File PersistanceManager", () => {
         let pm = ucpComponent.persistanceManager.list[0] as FilePersistanceManager;
 
         const filePath = pm.filePath();
+        // TODO PB merge
+        // @ts-ignore
         const matchPath = path.join(ONCE.eamd.scenario.eamdPath, ONCE.eamd.scenario.scenarioPath);
         expect(filePath.startsWith(matchPath), `${filePath} ${matchPath}`).toBe(true);
 
