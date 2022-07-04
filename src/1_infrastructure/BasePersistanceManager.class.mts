@@ -1,5 +1,5 @@
 import { BaseThing, IOR } from "ior:esm:/tla.EAM.Once[build]";
-import PersistanceManager, { UDEObject } from "../3_services/PersistanceManager.interface.mjs";
+import PersistanceManager, { PersistanceManagerID, UDEObject } from "../3_services/PersistanceManager.interface.mjs";
 import UcpComponent from "../3_services/UcpComponent.interface.mjs";
 import { UcpModelChangelog, UcpModelEvents } from "../3_services/UcpModel.interface.mjs";
 
@@ -34,16 +34,13 @@ export abstract class BasePersistanceManager extends BaseThing<any> implements P
 
         }
 
-
-        // const classList = PersistanceManagerID.implementations.map(x => {
-        //     return {
-        //         result: (x.class.canHandle ? x.class.canHandle(ior) : 0) as number,
-        //         aClass: x.class
-        //     }
-        // });
-
-        const classList: { result: number, aClass: any }[] = [{ result: 1, aClass: BasePersistanceManager }];
-
+        const classList = PersistanceManagerID.implementations.map(x => {
+            return {
+                result: (x.class.canHandle ? x.class.canHandle(ior) : 0) as number,
+                aClass: x.class
+            }
+        }
+        );
         const sortedClassList = classList.sort((a, b) => b.result - a.result);
 
         if (sortedClassList.length > 0 && classList[0].result > 0) {

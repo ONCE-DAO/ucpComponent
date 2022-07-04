@@ -3,6 +3,8 @@ import UcpModel from "../3_services/UcpModel.interface.mjs";
 import DefaultUcpModel, { UcpModelProxyIORSchema, UcpModelProxySchema } from "./DefaultUcpModel.class.mjs";
 import BaseUcpComponent from "../1_infrastructure/BaseUcpComponent.class.mjs";
 import { z } from "zod";
+import { ClassDescriptor } from "ior:esm:/tla.EAM.Once[build]";
+
 
 
 interface MyExampleUcpComponent extends UcpComponent<ModelDataType, MyExampleUcpComponent> {
@@ -52,7 +54,7 @@ const modelSchema =
 type ModelDataType = z.infer<typeof modelSchema>
 
 
-// @ClassDescriptor.componentExport('namedExport')
+@ClassDescriptor.componentExport('namedExport')
 export default class SomeExampleUcpComponent extends BaseUcpComponent<ModelDataType, MyExampleUcpComponent> implements MyExampleUcpComponent {
     get myName() { return this.model.myName }
 
