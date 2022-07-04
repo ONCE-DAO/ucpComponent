@@ -1,7 +1,7 @@
 
 import fs from "fs";
 
-import { IOR, OnceMode, ServerSideUcpComponentDescriptorInterface } from "ior:esm:/tla.EAM.Once[dev-merge]";
+import { IOR, OnceMode, ServerSideUcpComponentDescriptorInterface } from "ior:esm:/tla.EAM.Once[build]";
 
 import path from "path";
 import { BasePersistanceManager } from "../1_infrastructure/BasePersistanceManager.class.mjs";

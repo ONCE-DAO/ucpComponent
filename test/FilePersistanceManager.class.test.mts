@@ -1,4 +1,4 @@
-import { DefaultIOR, ServerSideUcpComponentDescriptorInterface } from "ior:esm:/tla.EAM.Once[dev-merge]";
+import { DefaultIOR, ServerSideUcpComponentDescriptorInterface } from "ior:esm:/tla.EAM.Once[build]";
 import { BasePersistanceManager } from "../src/1_infrastructure/BasePersistanceManager.class.mjs";
 import { FilePersistanceManager } from "../src/2_systems/FilePersistanceManager.class.mjs";
 import SomeExampleUcpComponent from "../src/2_systems/SomeExampleUcpComponent.class.mjs";

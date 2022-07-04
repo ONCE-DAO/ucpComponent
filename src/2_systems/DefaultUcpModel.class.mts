@@ -5,7 +5,7 @@ import Wave from "../3_services/Wave.interface.mjs";
 import { z } from "zod";
 import DefaultParticle from "./DefaultParticle.class.mjs";
 import DefaultWave from "./DefaultWave.class.mjs";
-import { BaseThing, DefaultIOR, ExtendedPromise } from "ior:esm:/tla.EAM.Once[dev-merge]";
+import { BaseThing, DefaultIOR, ExtendedPromise } from "ior:esm:/tla.EAM.Once[build]";
 import EventService, { DefaultEventService } from "ior:esm:/tla.EAM.Once.EventService[build]";
 
 

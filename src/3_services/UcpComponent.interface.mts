@@ -1,4 +1,4 @@
-import { Thing, IOR, Class } from "ior:esm:/tla.EAM.Once[dev-merge]";
+import { Thing, IOR, Class } from "ior:esm:/tla.EAM.Once[build]";
 import { RelatedObjectStoreInterface } from "ior:esm:/tla.EAM.Once.Store[build]";
 import { PersistanceManagerHandler } from "./PersistanceManagerHandler.interface.mjs";
 import UcpModel from "./UcpModel.interface.mjs";

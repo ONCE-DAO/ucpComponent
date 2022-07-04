@@ -1,4 +1,4 @@
-import { ClassDescriptor, IOR, ExtendedPromise, DefaultIOR, BaseLoader, urlProtocol, loadingConfig } from "ior:esm:/tla.EAM.Once[dev-merge]";
+import { IOR, ExtendedPromise, DefaultIOR, AbstractDefaultLoader, urlProtocol, loadingConfig } from "ior:esm:/tla.EAM.Once[build]";
 import { WeakRefPromiseStore } from "ior:esm:/tla.EAM.Once.Store[build]";
 import { BasePersistanceManager } from "../1_infrastructure/BasePersistanceManager.class.mjs";
 import { UDEObject } from "../3_services/PersistanceManager.interface.mjs";
@@ -8,8 +8,8 @@ import DefaultParticle from "./DefaultParticle.class.mjs";
 
 
 
-@ClassDescriptor.componentExport('namedExport')
-export default class UDELoader extends BaseLoader {
+// @ClassDescriptor.componentExport('namedExport')
+export default class UDELoader extends AbstractDefaultLoader {
     private static _loaderInstance: any;
 
     private instanceStore: WeakRefPromiseStore = new WeakRefPromiseStore();

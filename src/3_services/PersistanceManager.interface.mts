@@ -1,5 +1,5 @@
 
-import { Class, InterfaceDescriptor, IOR } from "ior:esm:/tla.EAM.Once[dev-merge]";
+import { Class, IOR } from "ior:esm:/tla.EAM.Once[build]";
 
 import { ParticleUDEStructure } from "./Particle.interface.mjs";
 import UcpComponent from "./UcpComponent.interface.mjs";
@@ -20,7 +20,8 @@ export default interface PersistanceManager {
   alias: string[];
 }
 
-export const PersistanceManagerID = InterfaceDescriptor.lastDescriptor;
+// TODO implement again
+// export const PersistanceManagerID = InterfaceDescriptor.lastDescriptor;
 
 
 export type UDEObject = {

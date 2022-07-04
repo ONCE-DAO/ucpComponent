@@ -1,4 +1,4 @@
-import { DefaultIOR, IOR, UUiD } from "ior:esm:/tla.EAM.Once[dev-merge]";
+import { DefaultIOR, IOR, UUiD } from "ior:esm:/tla.EAM.Once[build]";
 import SomeExampleUcpComponent from "../src/2_systems/SomeExampleUcpComponent.class.mjs";
 import UDELoader from "../src/2_systems/UDELoader.class.mjs";
 

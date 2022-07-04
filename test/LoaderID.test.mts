@@ -1,4 +1,4 @@
-import { LoaderID } from "ior:esm:/tla.EAM.Once[dev-merge]"
+import { LoaderID } from "ior:esm:/tla.EAM.Once[build]"
 
 test("init", async () => {
     let names = LoaderID.implementations.map(x => x.name);

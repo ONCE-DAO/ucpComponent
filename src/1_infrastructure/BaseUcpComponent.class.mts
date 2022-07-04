@@ -1,5 +1,5 @@
 
-import { OnceMode, ClassDescriptor, BaseThing, IOR, DefaultIOR } from "ior:esm:/tla.EAM.Once[dev-merge]";
+import { OnceMode, BaseThing, IOR, DefaultIOR } from "ior:esm:/tla.EAM.Once[build]";
 import { RelatedObjectStore, RelatedObjectStoreInterface } from "ior:esm:/tla.EAM.Once.Store[build]";
 import { z } from "zod";
 import { UcpModelProxySchema } from "../2_systems/DefaultUcpModel.class.mjs";
@@ -15,7 +15,7 @@ import { BasePersistanceManager } from "./BasePersistanceManager.class.mjs";
 if (typeof ONCE === "undefined" || ONCE.mode !== OnceMode.BROWSER) {
     await import("../2_systems/FilePersistanceManager.class.mjs")
 }
-@ClassDescriptor.componentExport('namedExport')
+// @ClassDescriptor.componentExport('namedExport')
 export default abstract class BaseUcpComponent<ModelDataType, ClassInterface> extends BaseThing<ClassInterface> implements UcpComponent<ModelDataType, ClassInterface> {
     readonly Store: RelatedObjectStoreInterface = new RelatedObjectStore();
     private _persistanceManager: DefaultPersistanceManagerHandler | undefined;
