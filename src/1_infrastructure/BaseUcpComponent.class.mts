@@ -1,18 +1,20 @@
 
 import { OnceMode, ClassDescriptor, BaseThing, IOR, DefaultIOR } from "ior:esm:/tla.EAM.Once[dev]";
 import { RelatedObjectStore, RelatedObjectStoreInterface } from "ior:esm:/tla.EAM.Store[main]";
-import { BasePersistanceManager, PersistanceManagerHandler, DefaultPersistanceManagerHandler } from "ior:esm:/tla.EAM.UcpComponent.PersistanceManager[main]";
 import { z } from "zod";
 import { UcpModelProxySchema } from "../2_systems/DefaultUcpModel.class.mjs";
+import { DefaultPersistanceManagerHandler } from "../2_systems/PersistanceManagerHandler.class.mjs";
+import { PersistanceManagerHandler } from "../3_services/PersistanceManagerHandler.interface.mjs";
 import UcpModel from "../3_services/UcpModel.interface.mjs";
 import UcpComponent from "../index.mjs";
+import { BasePersistanceManager } from "./BasePersistanceManager.class.mjs";
 
 
 // HACK: ONCE should be there 
 // ONCE ist undefined beim Import, wenn es auf dem Server läuft
-// if (typeof ONCE === "undefined" || ONCE.mode !== OnceMode.BROWSER) {
-//     await import("../2_systems/FilePersistanceManager.class.mjs")
-// }
+if (typeof ONCE === "undefined" || ONCE.mode !== OnceMode.BROWSER) {
+    await import("../2_systems/FilePersistanceManager.class.mjs")
+}
 @ClassDescriptor.componentExport('namedExport')
 export default abstract class BaseUcpComponent<ModelDataType, ClassInterface> extends BaseThing<ClassInterface> implements UcpComponent<ModelDataType, ClassInterface> {
     readonly Store: RelatedObjectStoreInterface = new RelatedObjectStore();
