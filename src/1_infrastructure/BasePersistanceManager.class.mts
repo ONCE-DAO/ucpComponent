@@ -68,20 +68,7 @@ export abstract class BasePersistanceManager extends BaseThing<any> implements P
 
     get ucpComponentData(): UDEObject {
         if (!this.ucpComponent) throw new Error("Missing ucpComponent");
-        const ucpComponent = this.ucpComponent;
-        const IOR = this.ucpComponent.IOR;
-        const modelData = ucpComponent.ucpModel.toUDEStructure();
-
-        if (!IOR.id) throw new Error("Missing IOR ID in " + IOR.href);
-        const udeData: UDEObject = {
-            id: IOR.id,
-            instanceIOR: IOR.href,
-            typeIOR: ucpComponent.classDescriptor.class.IOR.href,
-            particle: modelData,
-        };
-        if (this.alias) udeData.alias = this.alias;
-
-        return udeData;
+        return this.ucpComponent.persistanceManager.ucpComponentData;
     }
 
     constructor(ucpComponent?: UcpComponent<any, any>) {
