@@ -2,8 +2,8 @@ import UcpComponent from "../3_services/UcpComponent.interface.mjs";
 import UcpModel from "../3_services/UcpModel.interface.mjs";
 import DefaultUcpModel, { UcpModelProxyIORSchema, UcpModelProxySchema } from "./DefaultUcpModel.class.mjs";
 import BaseUcpComponent from "../1_infrastructure/BaseUcpComponent.class.mjs";
-import { z } from "zod";
 import { ClassDescriptor } from "ior:esm:/tla.EAM.Once[dev]";
+import { z } from "./zod/index.js";
 
 
 

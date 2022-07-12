@@ -7,7 +7,9 @@ import DefaultParticle from "./DefaultParticle.class.mjs";
 
 
 
-
+// if (typeof window === "undefined") {
+//     await import("../2_systems/FilePersistanceManager.class.mjs")
+// }
 @ClassDescriptor.componentExport('namedExport')
 export default class UDELoader extends BaseLoader {
     private static _loaderInstance: any;

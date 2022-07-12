@@ -2,11 +2,11 @@ import Particle, { ParticleUDEStructure } from "../3_services/Particle.interface
 import UcpComponent from "../3_services/UcpComponent.interface.mjs";
 import UcpModel, { UcpModelChangelog as UcpModelChangelog, UcpModelChangeLogMethods, UcpModelEvents, UcpModelTransactionStates } from "../3_services/UcpModel.interface.mjs";
 import Wave from "../3_services/Wave.interface.mjs";
-import { z } from "zod";
 import DefaultParticle from "./DefaultParticle.class.mjs";
 import DefaultWave from "./DefaultWave.class.mjs";
 import { BaseThing, DefaultIOR, ExtendedPromise } from "ior:esm:/tla.EAM.Once[dev]";
 import EventService, { DefaultEventService } from "ior:esm:/tla.EAM.EventService[main]";
+import { z } from "./zod/index.js";
 
 
 export const UcpModelProxySchema = z.object({

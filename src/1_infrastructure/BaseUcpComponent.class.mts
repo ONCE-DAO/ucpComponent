@@ -1,18 +1,19 @@
 
 import { OnceMode, ClassDescriptor, BaseThing, IOR, DefaultIOR } from "ior:esm:/tla.EAM.Once[dev]";
 import { RelatedObjectStore, RelatedObjectStoreInterface } from "ior:esm:/tla.EAM.Store[main]";
-import { z } from "zod";
 import { UcpModelProxySchema } from "../2_systems/DefaultUcpModel.class.mjs";
 import { DefaultPersistanceManagerHandler } from "../2_systems/PersistanceManagerHandler.class.mjs";
 import { PersistanceManagerHandler } from "../3_services/PersistanceManagerHandler.interface.mjs";
 import UcpModel from "../3_services/UcpModel.interface.mjs";
-import UcpComponent from "../index.mjs";
+import { z } from "../2_systems/zod/index.js";
+
 import { BasePersistanceManager } from "./BasePersistanceManager.class.mjs";
+import UcpComponent from "../3_services/UcpComponent.interface.mjs";
 
 
 // HACK: ONCE should be there 
 // ONCE ist undefined beim Import, wenn es auf dem Server läuft
-if (typeof ONCE === "undefined" || ONCE.mode !== OnceMode.BROWSER) {
+if (typeof window === "undefined") {
     await import("../2_systems/FilePersistanceManager.class.mjs")
 }
 @ClassDescriptor.componentExport('namedExport')
