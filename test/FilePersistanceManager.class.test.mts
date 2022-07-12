@@ -5,8 +5,8 @@ import SomeExampleUcpComponent from "../src/2_systems/SomeExampleUcpComponent.cl
 import UDELoader from "../src/2_systems/UDELoader.class.mjs";
 import { PersistanceManagerID } from "../src/3_services/PersistanceManager.interface.mjs";
 
-import fs from "fs";
-import path from "path";
+import * as fs from "fs";
+import * as path from "path";
 
 let allFiles: string[] = [];
 
