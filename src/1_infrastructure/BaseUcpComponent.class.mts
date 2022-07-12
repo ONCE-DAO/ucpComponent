@@ -15,6 +15,8 @@ import UcpComponent from "../3_services/UcpComponent.interface.mjs";
 // ONCE ist undefined beim Import, wenn es auf dem Server läuft
 if (typeof window === "undefined") {
     await import("../2_systems/FilePersistanceManager.class.mjs")
+} else {
+    await import("../2_systems/BrowserUDEPersistanceManager.class.mjs")
 }
 @ClassDescriptor.componentExport('namedExport')
 export default abstract class BaseUcpComponent<ModelDataType, ClassInterface> extends BaseThing<ClassInterface> implements UcpComponent<ModelDataType, ClassInterface> {
