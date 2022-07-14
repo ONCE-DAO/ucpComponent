@@ -26,7 +26,6 @@
     "typescript": "^4.7.2"
   },
   "dependencies": {
-    "glob": "^8.0.3",
-    "zod": "^3.17.3"
+    "glob": "^8.0.3"
   }
 }

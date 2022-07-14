@@ -6,9 +6,9 @@ import { DefaultPersistanceManagerHandler } from "../2_systems/PersistanceManage
 import { PersistanceManagerHandler } from "../3_services/PersistanceManagerHandler.interface.mjs";
 import UcpComponent from "../3_services/UcpComponent.interface.mjs";
 import UcpModel from "../3_services/UcpModel.interface.mjs";
-import { z } from "../2_systems/zod/index.js";
 
 import { BasePersistanceManager } from "./BasePersistanceManager.class.mjs";
+import { z } from "ior:esm:/dev.zod[test-component]";
 
 
 // HACK: ONCE should be there 

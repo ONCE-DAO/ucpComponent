@@ -1,4 +1,4 @@
-import { CRUD_Client, IOR, OnceMode, urlProtocol } from "ior:esm:/tla.EAM.Once[dev]";
+import { CRUD_Client, IOR, OnceMode, urlProtocol } from "ior:esm:/tla.EAM.Once[build]";
 import { BasePersistanceManager } from "../1_infrastructure/BasePersistanceManager.class.mjs";
 import { UDEObject } from "../3_services/PersistanceManager.interface.mjs";
 import { UcpModelChangelog } from "../3_services/UcpModel.interface.mjs";
@@ -39,7 +39,7 @@ export class BrowserUDEPersistenceManager extends BasePersistanceManager {
         let internalIOR: IOR | undefined = ior || this.IOR;
         if (!internalIOR) throw new Error("Missing IOR");
 
-        let DefaultClient = (await import("ior:esm:/tla.EAM.Once[dev]")).DefaultClient;
+        let DefaultClient = (await import("ior:esm:/tla.EAM.Once[build]")).DefaultClient;
 
         let client = DefaultClient.findClient(internalIOR);
         if (!client) throw new Error("No Client found");

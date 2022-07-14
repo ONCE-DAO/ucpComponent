@@ -6,7 +6,7 @@ import DefaultParticle from "./DefaultParticle.class.mjs";
 import DefaultWave from "./DefaultWave.class.mjs";
 import { BaseThing, DefaultIOR, ExtendedPromise } from "ior:esm:/tla.EAM.Once[build]";
 import EventService, { DefaultEventService } from "ior:esm:/tla.EAM.Once.EventService[build]";
-import { z } from "./zod/index.js";
+import { z } from "ior:esm:/dev.zod[test-component]";
 
 
 export const UcpModelProxySchema = z.object({
