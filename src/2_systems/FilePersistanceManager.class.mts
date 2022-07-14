@@ -26,7 +26,7 @@ export class FilePersistanceManager extends BasePersistanceManager {
     static readonly _aliasSeparator: string = ".";
 
     static canHandle(ior: IOR): number {
-        if (ONCE && (ONCE.mode === OnceMode.NODE_JS || ONCE.mode === OnceMode.NODE_LOADER)) {
+        if (ONCE && ONCE.isNodeJSEnvironment) {
             if ((ior.hostName === 'localhost' || ior.hostName == undefined) && ior.id) {
                 return 1;
             }

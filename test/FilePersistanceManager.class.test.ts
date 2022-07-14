@@ -75,9 +75,8 @@ describe("File PersistanceManager", () => {
         let pm = ucpComponent.persistanceManager.list[0] as FilePersistanceManager;
 
         const filePath = pm.filePath();
-        // TODO PB merge
-        // @ts-ignore
-        const matchPath = path.join(ONCE.eamd.scenario.eamdPath, ONCE.eamd.scenario.scenarioPath);
+
+        const matchPath = ONCE.eamd.currentScenario.scenarioPath;
         expect(filePath.startsWith(matchPath), `${filePath} ${matchPath}`).toBe(true);
 
         let outputDir = (SomeExampleUcpComponent.classDescriptor.ucpComponentDescriptor as ServerSideUcpComponentDescriptorInterface).scenarioDirectory

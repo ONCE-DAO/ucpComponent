@@ -5,5 +5,5 @@ test("init", async () => {
 
 
 
-    expect(names.includes("EAMDLoader"), names.join(',')).toBeTruthy();
+    expect(names.includes("AbstractDefaultLoader"), names.join(',')).toBeTruthy();
 })
