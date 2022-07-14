@@ -6,6 +6,7 @@ import UcpComponent from "../3_services/UcpComponent.interface.mjs"
 
 
 export class DefaultPersistanceManagerHandler implements PersistanceManagerHandler {
+    private _alias: string[] = [];
     async create(): Promise<any[]> {
         return this.runPMAction(PM_ACTION.create)
     }
@@ -19,11 +20,17 @@ export class DefaultPersistanceManagerHandler implements PersistanceManagerHandl
         return this.runPMAction(PM_ACTION.delete)
     }
     async addAlias(alias: string): Promise<any[]> {
-        if (alias.match(/\./)) throw new Error("No '.' are allowed in alias")
+        if (alias.match(/\./)) throw new Error("No '.' are allowed in alias");
+        this._alias.push(alias);
         return this.runPMAction(PM_ACTION.addAlias, alias)
     }
     async removeAlias(alias: string): Promise<any[]> {
+        this._alias = this._alias.filter(x => x !== alias);
         return this.runPMAction(PM_ACTION.removeAlias, alias)
+    }
+
+    get alias(): string[] {
+        return this._alias;
     }
 
     retrieveFromData(udeData: UDEObject): Promise<any[]> {
@@ -51,6 +58,24 @@ export class DefaultPersistanceManagerHandler implements PersistanceManagerHandl
         let result = await Promise.all(resultPromises);
 
         return result;
+    }
+
+    get ucpComponentData(): UDEObject {
+        if (!this.ucpComponent) throw new Error("Missing ucpComponent");
+        const ucpComponent = this.ucpComponent;
+        const IOR = this.ucpComponent.IOR;
+        const modelData = ucpComponent.ucpModel.toUDEStructure();
+
+        if (!IOR.id) throw new Error("Missing IOR ID in " + IOR.href);
+        const udeData: UDEObject = {
+            id: IOR.id,
+            instanceIOR: IOR.href,
+            typeIOR: ucpComponent.classDescriptor.class.IOR.href,
+            particle: modelData,
+        };
+        if (this.alias && this.alias.length > 0) udeData.alias = this.alias;
+
+        return udeData;
     }
 
     constructor(private ucpComponent: UcpComponent<any, any>) {

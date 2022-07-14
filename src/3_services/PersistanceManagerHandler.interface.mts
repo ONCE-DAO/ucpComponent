@@ -10,6 +10,7 @@ export interface PersistanceManagerHandler {
 
     addAlias(alias: string): Promise<any[]>;
     removeAlias(alias: string): Promise<any[]>;
+    ucpComponentData: UDEObject;
 
     // await(): Promise<any[]>;
 }
