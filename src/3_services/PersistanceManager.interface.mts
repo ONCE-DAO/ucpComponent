@@ -2,7 +2,6 @@
 import { Class, InterfaceDescriptor, IOR } from "ior:esm:/tla.EAM.Once[build]";
 
 import { ParticleUDEStructure } from "./Particle.interface.mjs";
-import UcpComponent from "./UcpComponent.interface.mjs";
 import { UcpModelChangelog } from "./UcpModel.interface.mjs";
 
 export default interface PersistanceManager {
@@ -33,5 +32,5 @@ export type UDEObject = {
 
 // TODO@BE Need to use it
 export interface PersistanceManagerStatic<ClassInterface> extends Class<ClassInterface> {
-  canHandle(ucpComponent: UcpComponent<any, any>): number;
+  canHandle(ior: IOR): number;
 }

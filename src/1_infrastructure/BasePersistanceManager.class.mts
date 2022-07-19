@@ -1,5 +1,5 @@
-import { BaseThing, IOR } from "ior:esm:/tla.EAM.Once[build]";
-import PersistanceManager, { PersistanceManagerID, UDEObject } from "../3_services/PersistanceManager.interface.mjs";
+import { BaseThing, InterfaceDescriptor, IOR } from "ior:esm:/tla.EAM.Once[build]";
+import PersistanceManager, { PersistanceManagerStatic, UDEObject } from "../3_services/PersistanceManager.interface.mjs";
 import UcpComponent from "../3_services/UcpComponent.interface.mjs";
 import { UcpModelChangelog, UcpModelEvents } from "../3_services/UcpModel.interface.mjs";
 
@@ -34,10 +34,11 @@ export abstract class BasePersistanceManager extends BaseThing<any> implements P
 
         }
 
-        const classList = PersistanceManagerID.implementations.map(x => {
+        const classList = InterfaceDescriptor.getInterfaceDescriptor<PersistanceManager>().implementations.map(y => {
+            let x = y as PersistanceManagerStatic<any>;
             return {
-                result: (x.class.canHandle ? x.class.canHandle(ior) : 0) as number,
-                aClass: x.class
+                result: (x.canHandle ? x.canHandle(ior) : 0) as number,
+                aClass: x
             }
         }
         );
