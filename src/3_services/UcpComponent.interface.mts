@@ -1,5 +1,5 @@
 import { Thing, IOR, Class } from "ior:esm:/tla.EAM.Once[build]";
-import { RelatedObjectStoreInterface } from "ior:esm:/tla.EAM.Once.Store[build]";
+import { RelatedObjectStore } from "ior:esm:/tla.EAM.Once.Store[build]";
 import { PersistanceManagerHandler } from "./PersistanceManagerHandler.interface.mjs";
 import UcpModel from "./UcpModel.interface.mjs";
 
@@ -8,7 +8,7 @@ export default interface UcpComponent<ModelDataType, ClassInterface> extends Thi
     add(object: any): Promise<boolean>;
     IOR: IOR;
     persistanceManager: PersistanceManagerHandler;
-    Store: RelatedObjectStoreInterface;
+    Store: RelatedObjectStore;
     ucpModel: UcpModel;
 }
 
