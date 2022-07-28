@@ -3,7 +3,7 @@ import UcpModel from "../3_services/UcpModel.interface.mjs";
 import DefaultUcpModel, { UcpModelProxyIORSchema, UcpModelProxySchema } from "./DefaultUcpModel.class.mjs";
 import BaseUcpComponent from "../1_infrastructure/BaseUcpComponent.class.mjs";
 import { z } from "ior:esm:/dev.zod[test-component]";
-import { ClassDescriptor } from "ior:esm:/tla.EAM.Once[build]";
+import { ClassDescriptor, InterfaceDescriptor, Thing } from "ior:esm:/tla.EAM.Once[build]";
 
 
 
@@ -32,29 +32,9 @@ const modelSchema =
         .merge(BaseUcpComponent.modelSchema).merge(UcpModelProxySchema)
     ;
 
-// const convertedModelSchema = convert(modelSchema) //.merge(UcpModelProxySchema);
-
-
-// const mySchema = z.object({
-//     myString: z.string().min(5),
-//     myUnion: z.union([z.number(), z.boolean()]),
-// });
-
-// function convert<T extends z.ZodFirstPartySchemaTypes>(schema: T): T {
-//     if ("merge" in schema) {
-//         schema.merge(UcpModelProxySchema);
-//     }
-//     return schema;
-// }
-
-//const convertedModelSchema = UcpModelSchemaConverter(modelSchema, { optional: false })
-
-
-
 type ModelDataType = z.infer<typeof modelSchema>
 
 
-@ClassDescriptor.componentExport('namedExport')
 export default class SomeExampleUcpComponent extends BaseUcpComponent<ModelDataType, MyExampleUcpComponent> implements MyExampleUcpComponent {
     get myName() { return this.model.myName }
 
@@ -70,6 +50,13 @@ export default class SomeExampleUcpComponent extends BaseUcpComponent<ModelDataT
             ...super.modelDefaultData,
             name: 'MyDefaultName'
         }
+    }
+
+    async add(object: Thing<any>): Promise<boolean> {
+        if (InterfaceDescriptor.isInterface<UcpComponent<any, any>>(object)) {
+            object
+        }
+        return true;
     }
 }
 
