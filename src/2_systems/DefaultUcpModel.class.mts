@@ -405,7 +405,7 @@ export default class DefaultUcpModel<ModelDataType, UcpComponentInterface> exten
     }
 
     public getSchema(path: string[] = [], schema?: z.ZodFirstPartySchemaTypes): z.ZodFirstPartySchemaTypes {
-        if (schema === undefined) schema = this.ucpComponent.classDescriptor.class.modelSchema as z.ZodFirstPartySchemaTypes;
+        if (schema === undefined) schema = this.ucpComponent.modelSchema as z.ZodFirstPartySchemaTypes;
         for (const element of path) {
             const bottomSchema = getSchemaBottom(schema);
             switch (bottomSchema._def.typeName) {

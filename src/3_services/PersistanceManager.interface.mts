@@ -19,8 +19,6 @@ export default interface PersistanceManager {
   alias: string[];
 }
 
-export const PersistanceManagerID = InterfaceDescriptor.lastDescriptor;
-
 
 export type UDEObject = {
   id: string,

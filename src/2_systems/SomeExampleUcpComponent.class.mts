@@ -3,7 +3,7 @@ import UcpModel from "../3_services/UcpModel.interface.mjs";
 import DefaultUcpModel, { UcpModelProxyIORSchema, UcpModelProxySchema } from "./DefaultUcpModel.class.mjs";
 import BaseUcpComponent from "../1_infrastructure/BaseUcpComponent.class.mjs";
 import { z } from "ior:esm:/dev.zod[test-component]";
-import { ClassDescriptor, InterfaceDescriptor, Thing } from "ior:esm:/tla.EAM.Once[build]";
+import { ClassDescriptor, InterfaceDescriptor, InterfaceDescriptorHandler, Thing } from "ior:esm:/tla.EAM.Once[build]";
 
 
 
@@ -36,6 +36,7 @@ type ModelDataType = z.infer<typeof modelSchema>
 
 
 export default class SomeExampleUcpComponent extends BaseUcpComponent<ModelDataType, MyExampleUcpComponent> implements MyExampleUcpComponent {
+    modelSchema = modelSchema;
     get myName() { return this.model.myName }
 
     static get modelSchema() {
@@ -53,7 +54,7 @@ export default class SomeExampleUcpComponent extends BaseUcpComponent<ModelDataT
     }
 
     async add(object: Thing<any>): Promise<boolean> {
-        if (InterfaceDescriptor.isInterface<UcpComponent<any, any>>(object)) {
+        if (InterfaceDescriptorHandler.isInterface<UcpComponent<any, any>>(object)) {
             object
         }
         return true;

@@ -1,6 +1,6 @@
-import { OnceMode } from "ior:esm:/tla.EAM.Once[build]"
+import { InterfaceDescriptorHandler, OnceMode } from "ior:esm:/tla.EAM.Once[build]"
 import { PM_ACTION } from "../1_infrastructure/BasePersistanceManager.class.mjs"
-import PersistanceManager, { UDEObject, PersistanceManagerID } from "../3_services/PersistanceManager.interface.mjs"
+import PersistanceManager, { UDEObject } from "../3_services/PersistanceManager.interface.mjs"
 import { PersistanceManagerHandler } from "../3_services/PersistanceManagerHandler.interface.mjs"
 import UcpComponent from "../3_services/UcpComponent.interface.mjs"
 
@@ -38,6 +38,7 @@ export class DefaultPersistanceManagerHandler implements PersistanceManagerHandl
     }
 
     get list(): PersistanceManager[] {
+        let PersistanceManagerID = InterfaceDescriptorHandler.getInterfaceDescriptor<PersistanceManager>();
         return this.ucpComponent.Store.lookup(PersistanceManagerID) as PersistanceManager[];
     }
 
@@ -70,7 +71,7 @@ export class DefaultPersistanceManagerHandler implements PersistanceManagerHandl
         const udeData: UDEObject = {
             id: IOR.id,
             instanceIOR: IOR.href,
-            typeIOR: ucpComponent.classDescriptor.class.IOR.href,
+            typeIOR: ucpComponent.classDescriptor.classIOR.href,
             particle: modelData,
         };
         if (this.alias && this.alias.length > 0) udeData.alias = this.alias;

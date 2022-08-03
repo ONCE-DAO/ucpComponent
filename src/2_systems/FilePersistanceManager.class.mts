@@ -1,9 +1,9 @@
 
-import fs from "fs";
+import * as fs from "fs";
 
-import { IOR, OnceMode, ServerSideUcpComponentDescriptorInterface } from "ior:esm:/tla.EAM.Once[build]";
+import { IOR, ServerSideUcpComponentDescriptorInterface } from "ior:esm:/tla.EAM.Once[build]";
 
-import path from "path";
+import path, { join } from "path";
 import { BasePersistanceManager } from "../1_infrastructure/BasePersistanceManager.class.mjs";
 import { UDEObject } from "../3_services/PersistanceManager.interface.mjs";
 import { UcpModelChangelog } from "../3_services/UcpModel.interface.mjs";
@@ -46,7 +46,7 @@ export class FilePersistanceManager extends BasePersistanceManager {
 
     get udeDirectory(): string {
         if (this.ucpComponent === undefined) throw new Error("Missing ucpComponent");
-        let udeDir = path.join(ONCE.oldEamd.scenario.eamdPath, ONCE.oldEamd.scenario.webRoot, (this.ucpComponent.classDescriptor.ucpComponentDescriptor as ServerSideUcpComponentDescriptorInterface).scenarioDirectory);
+        let udeDir = join(ONCE.eamd.currentScenario.scenarioPath, ...this.ucpComponent.classDescriptor.ucpComponentDescriptor.location);
         if (!fs.existsSync(udeDir)) fs.mkdirSync(udeDir);
         return udeDir;
     }

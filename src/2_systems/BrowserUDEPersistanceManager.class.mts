@@ -41,7 +41,7 @@ export class BrowserUDEPersistenceManager extends BasePersistanceManager {
 
         let DefaultClient = (await import("ior:esm:/tla.EAM.Once[build]")).DefaultClient;
 
-        let client = DefaultClient.findClient(internalIOR);
+        let client = await DefaultClient.findClient(internalIOR);
         if (!client) throw new Error("No Client found");
         return client as CRUD_Client;
 

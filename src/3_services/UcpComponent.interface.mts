@@ -10,6 +10,8 @@ export default interface UcpComponent<ModelDataType, ClassInterface> extends Thi
     persistanceManager: PersistanceManagerHandler;
     Store: RelatedObjectStore;
     ucpModel: UcpModel;
+    modelSchema: any;
+    initPersistanceManager(): Promise<void>;
 }
 
 

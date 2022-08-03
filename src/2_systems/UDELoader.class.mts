@@ -10,7 +10,6 @@ import DefaultParticle from "./DefaultParticle.class.mjs";
 // if (typeof window === "undefined") {
 //     await import("../2_systems/FilePersistanceManager.class.mjs")
 // }
-@ClassDescriptor.componentExport('namedExport')
 export default class UDELoader extends AbstractDefaultLoader {
     private static _loaderInstance: any;
 
@@ -59,7 +58,7 @@ export default class UDELoader extends AbstractDefaultLoader {
             let promiseHandler = ExtendedPromise.createPromiseHandler();
             this.instanceStore.register(ior.href, promiseHandler.promise);
 
-            let persistanceManager = BasePersistanceManager.getPersistenceManager(ior);
+            let persistanceManager = await BasePersistanceManager.getPersistenceManager(ior);
             if (persistanceManager === undefined) throw new Error('No persistence manager found');
             let udeData = await persistanceManager.retrieve(ior);
 

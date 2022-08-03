@@ -19,19 +19,27 @@ if (typeof window === "undefined") {
     await import("../2_systems/BrowserUDEPersistanceManager.class.mjs")
 }
 export default abstract class BaseUcpComponent<ModelDataType, ClassInterface> extends BaseThing<ClassInterface> implements UcpComponent<ModelDataType, ClassInterface> {
+    abstract modelSchema: any;
+
     readonly Store: RelatedObjectStore = new DefaultRelatedObjectStore();
     private _persistanceManager: DefaultPersistanceManagerHandler | undefined;
     private _IOR: IOR | undefined;
     public abstract ucpModel: UcpModel;
 
-    get persistanceManager(): PersistanceManagerHandler {
 
+    //HACK Need to be replaced. But it requires after the last changes async
+    async initPersistanceManager(): Promise<void> {
         if (this._persistanceManager === undefined) {
-            BasePersistanceManager.getPersistenceManager(this);
+            await BasePersistanceManager.getPersistenceManager(this);
             this._persistanceManager = new DefaultPersistanceManagerHandler(this);
         }
+    }
+
+    get persistanceManager(): PersistanceManagerHandler {
+        if (!this._persistanceManager) throw new Error("Please init first! initPersistanceManager")
         return this._persistanceManager;
     }
+
     get IOR(): IOR {
         if (!this._IOR) {
             this._IOR = DefaultIOR.createUdeIor();
@@ -73,17 +81,8 @@ export default abstract class BaseUcpComponent<ModelDataType, ClassInterface> ex
         return { _component: { name: this.name } }
     }
 
-    private static _IOR: IOR | undefined;
-
-    static get IOR(): IOR {
-        if (!this._IOR) {
-            this._IOR = new DefaultIOR();
-
-            // TODO Replace localhost
-            let href = 'ior:esm:' + this.classDescriptor.classPackageString;
-            this._IOR.init(href);
-        }
-        return this._IOR;
-    }
+    // static get IOR(): IOR {
+    //     return this.classDescriptor.classIOR;
+    // }
 
 }
