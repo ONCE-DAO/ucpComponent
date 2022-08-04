@@ -3,7 +3,6 @@ import { BasePersistanceManager } from "../src/1_infrastructure/BasePersistanceM
 import { FilePersistanceManager } from "../src/2_systems/FilePersistanceManager.class.mjs";
 import SomeExampleUcpComponent from "../src/2_systems/SomeExampleUcpComponent.class.mjs";
 import UDELoader from "../src/2_systems/UDELoader.class.mjs";
-import { PersistanceManagerID } from "../src/3_services/PersistanceManager.interface.mjs";
 
 import * as fs from "fs";
 import * as path from "path";
@@ -55,7 +54,7 @@ describe("File PersistanceManager", () => {
 
         let pm = ucpComponent.persistanceManager;
 
-        expect(ucpComponent.Store.lookup(PersistanceManagerID).length).toBe(1);
+        // expect(ucpComponent.Store.lookup(PersistanceManagerID).length).toBe(1);
 
         expect(pm.list.length).toBeGreaterThan(-1);
         expect(pm.list[0]).toBeInstanceOf(FilePersistanceManager);

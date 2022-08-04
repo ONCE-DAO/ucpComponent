@@ -630,6 +630,7 @@ describe("Default Ucp Model", () => {
 
             test("set UDE Object", async () => {
                 let object = new SomeExampleUcpComponent();
+                await object.initPersistanceManager();
                 await object.persistanceManager.create();
 
                 model.iorObject = object.IOR.href;
@@ -657,6 +658,7 @@ describe("Default Ucp Model", () => {
 
             test("loadOnAccess true", async () => {
                 let object = new SomeExampleUcpComponent();
+                await object.initPersistanceManager();
                 await object.persistanceManager.create();
 
                 model.iorObject = object.IOR.href;

@@ -38,6 +38,7 @@ describe("UDE Loader", () => {
 
         this
         let ucpComponent = new SomeExampleUcpComponent();
+        await ucpComponent.initPersistanceManager();
         await ucpComponent.persistanceManager.create();
 
 
@@ -56,6 +57,8 @@ describe("UDE Loader", () => {
 
         this
         let ucpComponent = new SomeExampleUcpComponent();
+        await ucpComponent.initPersistanceManager();
+
         await ucpComponent.persistanceManager.create();
 
         await ucpComponent.persistanceManager.delete();
@@ -73,6 +76,7 @@ describe("UDE Loader", () => {
     test("Load with Alias", async () => {
 
         let ucpComponent = new SomeExampleUcpComponent();
+        await ucpComponent.initPersistanceManager();
 
         const myAlias = expect.getState().currentTestName + Math.round(Math.random() * 100000);
         ucpComponent.persistanceManager.addAlias(myAlias)
