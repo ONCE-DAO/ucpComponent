@@ -78,7 +78,7 @@ export default class UDELoader extends AbstractDefaultLoader {
             let instance = new aClass() as UcpComponent<any, any>;
 
             instance.IOR = resultIOR;
-
+            await instance.initPersistanceManager();
             await instance.persistanceManager.retrieveFromData(udeData);
             promiseHandler.setSuccess(instance);
 
